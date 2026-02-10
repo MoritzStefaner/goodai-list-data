@@ -21,8 +21,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git status --porcelain | grep -q "^\s*M\s*repos.json\|^\s*A\s*repos.json"; then
-            git add repos.json
+          if git status --porcelain -- repos.json | grep -q "."; then
+            git add -f repos.json
             git commit -m "Update repos.json ($(date -u +%Y-%m-%d))"
             git push
           else
